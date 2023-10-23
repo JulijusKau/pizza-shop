@@ -1,5 +1,5 @@
-import PizzaForm from "../components/OrderForm/OrderForm";
+import { OrderForm } from "../components/OrderForm/OrderForm";
 
 export const OrderPage = () => {
-  return <PizzaForm />;
+  return <OrderForm />;
 };

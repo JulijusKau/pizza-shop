@@ -6,15 +6,15 @@ import Typography from "@mui/material/Typography";
 
 export const OrderCard = ({ pizza, onDelete }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ width: "20rem" }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography variant="h6" color="textSecondary">
           Order Number: {pizza.orderNumber}
         </Typography>
         <Typography variant="h5" component="div">
           Pizza Size: {pizza.size}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography color="textSecondary">
           Toppings: {pizza.toppings.join(", ")}
         </Typography>
         <Typography variant="body2">
@@ -22,8 +22,18 @@ export const OrderCard = ({ pizza, onDelete }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => onDelete(pizza.orderNumber)}>
-          Delete
+        <Button
+          sx={{
+            color: "var(--colorE)",
+            backgroundColor: "var(--colorD)",
+            "&:hover": {
+              backgroundColor: "var(--colorA)",
+            },
+          }}
+          size="small"
+          onClick={() => onDelete(pizza.orderNumber)}
+        >
+          Delete Order
         </Button>
       </CardActions>
     </Card>

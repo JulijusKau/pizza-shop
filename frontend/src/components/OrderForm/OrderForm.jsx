@@ -11,7 +11,7 @@ import Chip from "@mui/material/Chip";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
-const PizzaForm = () => {
+export const OrderForm = () => {
   const [pizzaSize, setPizzaSize] = useState("small");
   const [selectedToppings, setSelectedToppings] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
@@ -226,5 +226,3 @@ const PizzaForm = () => {
     </Container>
   );
 };
-
-export default PizzaForm;
