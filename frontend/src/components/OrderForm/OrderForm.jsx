@@ -84,13 +84,24 @@ const PizzaForm = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} style={{ padding: "20px" }}>
+    <Container
+      sx={{
+        marginTop: "50px",
+      }}
+      maxWidth="sm"
+    >
+      <Paper elevation={20} style={{ padding: "20px" }}>
         <Typography variant="h5" gutterBottom>
-          Pizza Order Form
+          Are you ready to order?
         </Typography>
         <FormControl fullWidth>
-          <InputLabel>Pizza Size</InputLabel>
+          <InputLabel
+            sx={{
+              margin: "10px",
+            }}
+          >
+            Pizza Size
+          </InputLabel>
           <Select value={pizzaSize} onChange={handleSizeChange}>
             <MenuItem value="small">Small - €8</MenuItem>
             <MenuItem value="medium">Medium - €10</MenuItem>
@@ -98,11 +109,16 @@ const PizzaForm = () => {
           </Select>
         </FormControl>
         <FormControl fullWidth>
-          <Typography variant="h6">Toppings</Typography>
-          <div>
+          <Typography variant="h6">Choose your toppings:</Typography>
+          <div style={{ display: "flex", columnGap: "10px" }}>
             <Button
               variant="contained"
-              color="primary"
+              sx={{
+                backgroundColor: "var(--colorD)",
+                "&:hover": {
+                  backgroundColor: "var(--colorA)",
+                },
+              }}
               onClick={() => addTopping("cheese")}
             >
               Cheese
@@ -110,6 +126,12 @@ const PizzaForm = () => {
             <Button
               variant="contained"
               color="primary"
+              sx={{
+                backgroundColor: "var(--colorD)",
+                "&:hover": {
+                  backgroundColor: "var(--colorA)",
+                },
+              }}
               onClick={() => addTopping("pepperoni")}
             >
               Pepperoni
@@ -117,6 +139,12 @@ const PizzaForm = () => {
             <Button
               variant="contained"
               color="primary"
+              sx={{
+                backgroundColor: "var(--colorD)",
+                "&:hover": {
+                  backgroundColor: "var(--colorA)",
+                },
+              }}
               onClick={() => addTopping("mushrooms")}
             >
               Mushrooms
@@ -129,7 +157,7 @@ const PizzaForm = () => {
               key={index}
               label={topping}
               onDelete={() => removeTopping(topping)}
-              style={{ marginRight: "8px" }}
+              style={{ margin: "8px" }}
             />
           ))}
         </div>
@@ -140,11 +168,16 @@ const PizzaForm = () => {
         </Typography>
         <Button
           variant="contained"
-          color="primary"
           fullWidth
           onClick={calculateTotalCost}
           style={{ marginTop: "20px" }}
           disabled={selectedToppings.length === 0}
+          sx={{
+            backgroundColor: "var(--colorD)",
+            "&:hover": {
+              backgroundColor: "var(--colorA)",
+            },
+          }}
         >
           Calculate Total
         </Button>
@@ -156,7 +189,12 @@ const PizzaForm = () => {
         {totalCost > 0 && !pizzaOrder && (
           <Button
             variant="contained"
-            color="primary"
+            sx={{
+              backgroundColor: "var(--colorD)",
+              "&:hover": {
+                backgroundColor: "var(--colorA)",
+              },
+            }}
             fullWidth
             onClick={createPizzaOrder}
             style={{ marginTop: "20px" }}
