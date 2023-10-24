@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 export const OrderForm = () => {
   const [pizzaSize, setPizzaSize] = useState("small");
@@ -73,10 +74,22 @@ export const OrderForm = () => {
       toppings: selectedToppings,
       cost: totalCost,
     };
-    setPizzaOrder(pizza);
-    setIsModalOpen(true);
-    setSelectedToppings([]); // Reset selected toppings
-    setTotalCost(0); // Reset total cost
+
+    axios
+      .post("http://localhost:5000/pizzas", pizza)
+      .then((response) => {
+        if (response.status === 200) {
+          setPizzaOrder(pizza);
+          setIsModalOpen(true);
+          setSelectedToppings([]); // Reset selected toppings
+          setTotalCost(0); // Reset total cost
+        } else {
+          console.error("Failed to create the pizza order.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error while creating the pizza order:", error);
+      });
   };
 
   const closeModal = () => {

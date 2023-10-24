@@ -23,7 +23,7 @@ dbConnection.query("CREATE DATABASE IF NOT EXISTS pizza_shop", (err) => {
       id INT NOT NULL AUTO_INCREMENT UNIQUE,
       size VARCHAR(255) NOT NULL,
       toppings TEXT NOT NULL,
-      cost INT NOT NULL,
+      cost DECIMAL(10, 2) NOT NULL,
       primary key (id)
     )
     `;

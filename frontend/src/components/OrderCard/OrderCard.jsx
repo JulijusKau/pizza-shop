@@ -32,9 +32,7 @@ export const OrderCard = ({ pizza, onDelete }) => {
         <Typography color="textSecondary">
           Toppings: {pizza.toppings}
         </Typography>
-        <Typography variant="body2">
-          Total Cost: ${pizza.cost.toFixed(2)}
-        </Typography>
+        <Typography variant="body2">Total Cost: €{pizza.cost}</Typography>
       </CardContent>
       <CardActions>
         <Button
