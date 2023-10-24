@@ -9,16 +9,16 @@ export const OrderCard = ({ pizza, onDelete }) => {
     <Card sx={{ width: "20rem" }}>
       <CardContent>
         <Typography variant="h6" color="textSecondary">
-          Order Number: {pizza.orderNumber}
+          Order Number: {pizza.id}
         </Typography>
         <Typography variant="h5" component="div">
           Pizza Size: {pizza.size}
         </Typography>
         <Typography color="textSecondary">
-          Toppings: {pizza.toppings.join(", ")}
+          Toppings: {pizza.toppings}
         </Typography>
         <Typography variant="body2">
-          Total Cost: ${pizza.totalCost.toFixed(2)}
+          Total Cost: ${pizza.cost.toFixed(2)}
         </Typography>
       </CardContent>
       <CardActions>
@@ -31,7 +31,7 @@ export const OrderCard = ({ pizza, onDelete }) => {
             },
           }}
           size="small"
-          onClick={() => onDelete(pizza.orderNumber)}
+          onClick={() => onDelete(pizza.id)}
         >
           Delete Order
         </Button>

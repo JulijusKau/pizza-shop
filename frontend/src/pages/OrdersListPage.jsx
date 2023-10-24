@@ -1,53 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { OrderCard } from "../components/OrderCard/OrderCard";
+import axios from "axios";
 
 export const OrdersListPage = () => {
-  const [pizzaOrders, setPizzaOrders] = useState([
-    {
-      orderNumber: 1,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 3,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 2,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 7,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 8,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 9,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
-    {
-      orderNumber: 10,
-      size: "medium",
-      toppings: ["cheese", "pepperoni"],
-      totalCost: 10.5,
-    },
+  const [pizzaOrders, setPizzaOrders] = useState([]);
 
-    // Add more pizza orders here
-  ]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/pizzas")
+      .then((response) => {
+        const pizzaOrdersWithFormattedToppings = response.data.map((pizza) => {
+          const toppingsArray = JSON.parse(pizza.toppings);
+          const formattedToppings = toppingsArray.join(", ");
+          return {
+            ...pizza,
+            toppings: formattedToppings,
+          };
+        });
+        setPizzaOrders(pizzaOrdersWithFormattedToppings);
+      })
+      .catch((error) => {
+        console.error("Error fetching pizza orders:", error);
+      });
+  }, []);
 
   const handleDelete = (orderNumber) => {
     const updatedOrders = pizzaOrders.filter(
@@ -67,11 +42,7 @@ export const OrdersListPage = () => {
         }}
       >
         {pizzaOrders.map((pizza) => (
-          <OrderCard
-            key={pizza.orderNumber}
-            pizza={pizza}
-            onDelete={handleDelete}
-          />
+          <OrderCard key={pizza.id} pizza={pizza} onDelete={handleDelete} />
         ))}
       </div>
     </>

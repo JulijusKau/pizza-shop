@@ -12,7 +12,7 @@ router.get("/pizzas", (req, res) => {
 });
 
 router.delete("/pizzas/:id", (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   dbConnection.execute("DELETE FROM pizzas WHERE id = ?", [id], (err, result) =>
     defaultCallback(err, result, res)
