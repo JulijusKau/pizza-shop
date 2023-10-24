@@ -22,7 +22,7 @@ export const OrdersListPage = () => {
       .catch((error) => {
         console.error("Error fetching pizza orders:", error);
       });
-  }, []);
+  }, [pizzaOrders]);
 
   const handleDelete = (orderNumber) => {
     const updatedOrders = pizzaOrders.filter(
