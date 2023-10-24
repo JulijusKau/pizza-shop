@@ -7,7 +7,7 @@ export const OrdersListPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/pizzas")
+      .get(`${process.env.REACT_APP_API_AUTH}/pizzas`)
       .then((response) => {
         const pizzaOrdersWithFormattedToppings = response.data.map((pizza) => {
           const toppingsArray = JSON.parse(pizza.toppings);

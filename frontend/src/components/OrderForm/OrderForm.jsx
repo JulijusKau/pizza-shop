@@ -76,7 +76,7 @@ export const OrderForm = () => {
     };
 
     axios
-      .post("http://localhost:5000/pizzas", pizza)
+      .post(`${process.env.REACT_APP_API_AUTH}/pizzas`, pizza)
       .then((response) => {
         if (response.status === 200) {
           setPizzaOrder(pizza);

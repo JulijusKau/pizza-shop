@@ -8,7 +8,7 @@ import axios from "axios";
 export const OrderCard = ({ pizza, onDelete }) => {
   const handleDeleteClick = () => {
     axios
-      .delete(`http://localhost:5000/pizzas/${pizza.id}`)
+      .delete(`${process.env.REACT_APP_API_AUTH}/pizzas/${pizza.id}`)
       .then((response) => {
         if (response.status === 200) {
           onDelete(pizza.id);
