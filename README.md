@@ -1,3 +1,5 @@
+# This project has only been coded for an internship application
+
 # pizza-shop
 To run the Application you must first configure your .env files.
 
